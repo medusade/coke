@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,81 +13,71 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: String.hpp
+///   File: Base.hpp
 ///
-/// Author: $author$
-///   Date: 1/31/2018
+/// Author: $author
+///   Date: 2/2/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_LANG_STRING_HPP
-#define _COKE_LANG_STRING_HPP
+#ifndef _COKE_LANG_BASE_HPP
+#define _COKE_LANG_BASE_HPP
 
-#include "coke/lang/Object.hpp"
+#include "coke/Types.hpp"
 
 namespace coke {
 namespace lang {
 
-typedef ObjectImplements StringTImplements;
-typedef Object StringTExtends;
+typedef ::xos::base::implement_base ImplementBaseTImplements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: StringT
-///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = StringTImplements, class TExtends = StringTExtends>
-
-class _EXPORT_CLASS StringT: virtual public TImplements, public TExtends {
-public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    StringT(const StringT& copy) {
-    }
-    StringT() {
-    }
-    virtual ~StringT() {
-    }
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-};
-typedef StringT<> String;
-typedef String::Implements StringImplements;
-
-typedef StringImplements NullStringTImplements;
-typedef String NullStringTExtends;
-///////////////////////////////////////////////////////////////////////
-///  Class: NullStringT
+///  Class: ImplementBaseT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TImplements = NullStringTImplements, class TExtends = NullStringTExtends>
+<class TImplements = ImplementBaseTImplements>
 
-class _EXPORT_CLASS NullStringT: virtual public TImplements , public TExtends {
+class _EXPORT_CLASS ImplementBaseT: virtual public TImplements {
 public:
     typedef TImplements Implements;
-    typedef TExtends Extends;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    NullStringT(const NullStringT& copy): Extends(copy) {
-    }
-    NullStringT() {
-    }
-    virtual ~NullStringT() {
-    }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual boolean_t isNull() const {
-        return true;
+        return false;
+    }
+    virtual operator boolean_t() const {
+        return !isNull();
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef NullStringT<> NullString;
-typedef NullString::Implements NullStringImplements;
-typedef NullString::Extends NullStringExtends;
+typedef ImplementBaseT<> ImplementBase;
+typedef ImplementBase::Implements ImplementBaseImplements;
 
-} // namespace lang 
-} // namespace coke 
+typedef ImplementBase BaseTImplements;
+typedef ::xos::base::base BaseTExtends;
+///////////////////////////////////////////////////////////////////////
+///  Class: BaseT
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = BaseTImplements, class TExtends = BaseTExtends>
 
-#endif // _COKE_LANG_STRING_HPP 
+class _EXPORT_CLASS BaseT: virtual public TImplements , public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    BaseT(const BaseT& copy) {
+    }
+    BaseT() {
+    }
+    virtual ~BaseT() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef BaseT<> Base;
+typedef Base::Implements BaseImplements;
+typedef Base::Extends BaseExtends;
 
-        
+} // namespace lang
+} // namespace coke
 
+#endif // _COKE_LANG_BASE_HPP 

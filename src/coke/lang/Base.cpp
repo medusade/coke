@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,44 +13,20 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Object.hpp
+///   File: Base.cpp
 ///
-/// Author: $author$
-///   Date: 1/31/2018
+/// Author: $author
+///   Date: 2/2/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_LANG_OBJECT_HPP
-#define _COKE_LANG_OBJECT_HPP
-
 #include "coke/lang/Base.hpp"
 
 namespace coke {
 namespace lang {
 
-typedef ImplementBase ObjectTImplements;
-typedef Base ObjectTExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: ObjectT
+///  Class: BaseT
 ///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = ObjectTImplements, class TExtends = ObjectTExtends>
 
-class _EXPORT_CLASS ObjectT: virtual public TImplements, public TExtends {
-public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    ObjectT() {
-    }
-    virtual ~ObjectT() {
-    }
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-};
-typedef ObjectT<> Object;
-typedef Object::Implements ObjectImplements;
+} // namespace lang
+} // namespace coke
 
-} // namespace lang 
-} // namespace coke 
-
-#endif // _COKE_LANG_OBJECT_HPP 
