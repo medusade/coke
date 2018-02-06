@@ -19,6 +19,9 @@
 %#   Date: 2/2/2018
 %########################################################################
 %with(%
+%ClassExtends,%(%else-then(%ClassExtends%,%(%else-then(%classextends%,%(::coke::lang::Object)%)%)%)%)%,%
+%CLASSEXTENDS,%(%else-then(%CLASSEXTENDS%,%(%toupper(%ClassExtends%)%)%)%)%,%
+%classextends,%(%else-then(%_ClassExtends%,%(%tolower(%ClassExtends%)%)%)%)%,%
 %%(typedef %ClassImplements% %Class%TImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: %Class%T
@@ -34,4 +37,36 @@ public:
 };
 typedef %Class%T<> %Class%;
 typedef %Class%::Implements %Class%Implements;
+
+typedef %Class%Implements Null%Class%TImplements;
+typedef %ClassExtends% Null%Class%TExtends;
+///////////////////////////////////////////////////////////////////////
+///  Class: Null%Class%T
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = Null%Class%TImplements, class TExtends = Null%Class%TExtends>
+
+class _EXPORT_CLASS Null%Class%T: virtual public TImplements , public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    Null%Class%T(const Null%Class%T& copy): Extends(copy) {
+    }
+    Null%Class%T() {
+    }
+    virtual ~Null%Class%T() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual boolean_t isNull() const {
+        return true;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef Null%Class%T<> Null%Class%;
+typedef Null%Class%::Implements Null%Class%Implements;
+typedef Null%Class%::Extends Null%Class%Extends;
 )%)%
