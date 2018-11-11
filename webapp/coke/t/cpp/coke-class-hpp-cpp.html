@@ -27,24 +27,21 @@
         <!--========================================================================-->
         <!-- style                                                                  -->
         <!--========================================================================-->
-        <style
-         type="text/css">
+        <link rel="stylesheet" type="text/css" href="../../t/css/html-form-css.t"></link>
+        <style type="text/css">
         </style>
         <!--========================================================================-->
         <!-- script                                                                 -->
         <!--========================================================================-->
-        <script language="javaScript" src="../../t/js/html-form-js.t"></script>
-        <script
-         language="JavaScript"
-         type="text/JavaScript">
+        <script language="javascript" src="../../t/js/html-form-js.t"></script>
+        <script language="javascript" type="text/javascript">
         </script>
     </head>
     <!--========================================================================-->
     <!-- body                                                                   -->
     <!--========================================================================-->
     <body>
-        <h3>Create Coke C++ Class</h3>
-        <hr>
+        <h3><a href="coke-class-hpp-cpp.html">Create Coke C++ Class</a></h3>
         <!--========================================================================-->
         <!-- form                                                                   -->
         <!--========================================================================-->
@@ -52,33 +49,68 @@
          Action="coke-class-hpp-cpp.t"
          Method="POST"
          Name="Form"
-         onSubmit="return setFormSubmit(getFormValue('FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
-            File: <input name="File" value="%Class%"/>
+         onSubmit="return setFormSubmit(getFormValue2('FormTemplate','FormAction','Form'),getFormValue('FormMethod','Form'),'Form')">
+            <div class="form"><hr/>
+            File: <input name="File" value=""/>[%Class%]
             <input type="radio" name="Extension" value="hpp" checked="checked">.hpp</input>
             <input type="radio" name="Extension" value="cpp">.cpp</input>
-            <br/><br/>
-
-            <b>#include "</b><input name="Include" value=""/><b>"</b>[coke/lang/Object.hpp]<br/>
-            <b>#include &lt;</b><input name="SysInclude" value=""/><b>&gt;</b><br/>
+            <br/>
+            Template: <select name="FormTemplate">
+            <option value="coke-class-hpp-cpp.t">Coke C++ class</option>
+            <option value="coke-hpp-cpp.t">Coke C/C++</option>
+            <option value="/xde-cgi/cgi">CGI Parameters</option>
+            <option value=""/>
+            </select>
+            <br/>
             <br/>
 
-            <b>namespace</b> <input name="Namespace" value=""/>[coke/lang] <b>{</b><br/>
+            <b>#include "</b><input name="Include" value=""/><b>"</b>[coke/lang/Object.hpp]
+            <input type="checkbox" name="IsInclude" value="no">no</input><br/>
+            <b>#include &lt;</b><input name="SysInclude" value=""/><b>&gt;</b>
+            <input type="checkbox" name="IsSysInclude" value="no">no</input><br/>
+            <br/>
+
+            <b>namespace</b> <input name="Namespace" value=""/>[coke/lang] <b>{ </b>
+            <input type="checkbox" name="IsNamespace" value="no">no</input><br/>
             <br/>
             
-            <b>class</b> <input name="Class" value=""/>[Class]<br/>
-            <b>: virtual public</b> <input name="ClassImplements" value=""/>[::coke::lang::ImplementBase]<br/>
-            <b>, public</b> <input name="ClassExtends" value=""/><br>
-            <b>{}</b>;<br/>
+            <b>template &lt;</b><b>&gt;</b>
+            <input type="checkbox" name="IsTemplateClass" value="no">no</input><br/>
+            <b>class</b> <input name="Class" value=""/>[Class]
+            <input type="checkbox" name="IsClass" value="no">no</input><br/>
+            <b>: virtual public</b> <input name="ClassImplements" value=""/>[::coke::lang::ImplementBase]
+            <input type="checkbox" name="IsClassImplements" value="no">no</input><br/>
+            <b>, public</b> <input name="ClassExtends" value=""/>
+            <input type="checkbox" name="IsClassExtends" value="no">no</input><br>
+            <b>{}; // class </b>%Class%<br/>
             <br/>
 
-            <b>}</b> // namespace<br/>
+            <b>} // namespace </b>%Namespace%<br/>
             <br/>
 
-            Action: <input name="FormAction" value="coke-class-hpp-cpp.t"/><br/>
-            Method: <input name="FormMethod" value="POST"/><br/>
-            onSublit: <input name="onSublit" value="return setFormSubmit(getFormValue('%Name%Action','%Name%'),getFormValue('%Name%Method','%Name%'),'%Name%')"/><br/>
-            <hr/>
-            <input type="submit" name="submit" value="submit"/><br/>
+            Action: <select name="FormAction">
+            <option value="coke-class-hpp-cpp.t">coke-class-hpp-cpp.t</option>
+            <option value="/coral-cgi/cgicatcher">/coral-cgi/cgicatcher</option>
+            <option value="/coral-cgi/cgi">/coral-cgi/cgi</option>
+            <option value="/xde-cgi/cgi">/xde-cgi/cgi</option>
+            </select><br/>
+            Method: <select name="FormMethod">
+            <option value="POST">POST</option>
+            <option value="GET">GET</option>
+            </select><br/>
+            <hr/></div>
+
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                <td><input type="submit" name="submit" value="submit"/></td>
+                <td><table cellpadding="0" cellspacing="10" border="0">
+                    <tr>
+                    <td><b><a href="coke-class-hpp-cpp.html">Create Coke C++ Class</a></b></td>
+                    <td><b><a href="../../../..">/coke/</a></b></td>
+                    </tr>
+                </table></td>
+                </tr>
+            </table>
         </form>
     </body>
 </html>

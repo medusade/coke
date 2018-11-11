@@ -22,41 +22,48 @@
 %ClassExtends,%(%else-then(%ClassExtends%,%(%else-then(%classextends%,%(::coke::lang::Object)%)%)%)%)%,%
 %CLASSEXTENDS,%(%else-then(%CLASSEXTENDS%,%(%toupper(%ClassExtends%)%)%)%)%,%
 %classextends,%(%else-then(%_ClassExtends%,%(%tolower(%ClassExtends%)%)%)%)%,%
-%%(typedef %ClassImplements% %Class%TImplements;
+%nullclasstimplements,%(%else-then(%nullclasstimplements%,%(%if(%TemplateClass%,T,Null%ClassT%)%Implements)%)%)%,%
+%NullClassTImplements,%(%else-then(%NullClassTImplements%,%(%nullclasstimplements%)%)%)%,%
+%NULLCLASSTIMPLEMENTS,%(%else-then(%NULLCLASSTIMPLEMENTS%,%(%toupper(%NullClassTImplements%)%)%)%)%,%
+%nullclasstimplements,%(%else-then(%_NullClassTImplements%,%(%tolower(%NullClassTImplements%)%)%)%)%,%
+%nullclasstextends,%(%else-then(%nullclasstextends%,%(%if(%TemplateClass%,T,Null%ClassT%)%Extends)%)%)%,%
+%NullClassTExtends,%(%else-then(%NullClassTExtends%,%(%nullclasstextends%)%)%)%,%
+%NULLCLASSTEXTENDS,%(%else-then(%NULLCLASSTEXTENDS%,%(%toupper(%NullClassTExtends%)%)%)%)%,%
+%nullclasstextends,%(%else-then(%_NullClassTExtends%,%(%tolower(%NullClassTExtends%)%)%)%)%,%
+%%(typedef %ClassImplements% %ClassT%Implements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: %Class%T
+///  Class: %ClassT%
 ///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = %Class%TImplements>
+%if(%TemplateClass%,%(template <class TImplements = %ClassT%Implements>
 
-class _EXPORT_CLASS %Class%T: virtual public TImplements {
+)%)%class _EXPORT_CLASS %ClassT%: virtual public %ClassTImplements% {
 public:
-    typedef TImplements Implements;
+    typedef %ClassTImplements% Implements;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-};
-typedef %Class%T<> %Class%;
+}; // class _EXPORT_CLASS %ClassT%
+%if(%TemplateClass%,%(typedef %ClassT%<> %Class%;
 typedef %Class%::Implements %Class%Implements;
-
-typedef %Class%Implements Null%Class%TImplements;
-typedef %ClassExtends% Null%Class%TExtends;
+)%)%
+typedef %ClassT% Null%ClassT%Implements;
+typedef %ClassExtends% Null%ClassT%Extends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: Null%Class%T
+///  Class: Null%ClassT%
 ///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = Null%Class%TImplements, class TExtends = Null%Class%TExtends>
+%if(%TemplateClass%,%(template
+<class TImplements = Null%ClassT%Implements, class TExtends = Null%ClassT%Extends>
 
-class _EXPORT_CLASS Null%Class%T: virtual public TImplements , public TExtends {
+)%)%class _EXPORT_CLASS Null%ClassT%: virtual public %NullClassTImplements%, public %NullClassTExtends% {
 public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
+    typedef %NullClassTImplements% Implements;
+    typedef %NullClassTExtends% Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    Null%Class%T(const Null%Class%T& copy): Extends(copy) {
+    Null%ClassT%(const Null%ClassT%& copy): Extends(copy) {
     }
-    Null%Class%T() {
+    Null%ClassT%() {
     }
-    virtual ~Null%Class%T() {
+    virtual ~Null%ClassT%() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -65,8 +72,8 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-};
-typedef Null%Class%T<> Null%Class%;
+}; // class _EXPORT_CLASS Null%ClassT%
+%if(%TemplateClass%,%(typedef Null%ClassT%<> Null%Class%;
 typedef Null%Class%::Implements Null%Class%Implements;
 typedef Null%Class%::Extends Null%Class%Extends;
-)%)%
+)%)%)%)%

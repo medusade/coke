@@ -13,17 +13,21 @@
 %# or otherwise) arising in any way out of the use of this software, 
 %# even if advised of the possibility of such damage.
 %#
-%#   File: coke-class-interface-cpp.t
+%#   File: coke-cpp-cpp.t
 %#
 %# Author: $author$
-%#   Date: 2/2/2018
+%#   Date: 10/20/2018
 %########################################################################
 %with(%
-%%(///////////////////////////////////////////////////////////////////////
-///  Class: %ClassT%
+%include_path,%(%else-then(%include_path%,%(%filepath(%input%)%)%)%)%,%
+%%(%
+%%if(%Class%,%(
+///////////////////////////////////////////////////////////////////////
+///  Class: %Class%ImplementT
 ///////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////
-///  Class: Null%ClassT%
+///  Class: %Class%T
 ///////////////////////////////////////////////////////////////////////
-)%)%
+)%)%%
+%)%)%

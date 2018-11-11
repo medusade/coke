@@ -19,15 +19,15 @@
 %#   Date: 2/2/2018
 %########################################################################
 %with(%
-%%(#ifndef _%IFNDEF%_%FILE%_%EXTENSION%
-#define _%IFNDEF%_%FILE%_%EXTENSION%
-
-%if-then(%Includes%%SysIncludes%,
+%%(%
+%%Ifndef_begin%%
+%%then-if(%Includes%%SysIncludes%,
 )%%
-%%if-then(%Namespace_begin%,
+%%then-if(%Namespace_begin%,
 )%%
-%%if-then(%include(%InputPath%/coke-class-%ClassType%-hpp.t)%,
+%%then-if(%include(%include_path%/coke-class-%ClassType%-hpp.t)%,
 )%%
-%%if-then(%Namespace_end%,
-)%#endif // _%IFNDEF%_%FILE%_%EXTENSION% 
-)%)%
+%%then-if(%Namespace_end%,
+)%%
+%%Ifndef_end%%
+%)%)%

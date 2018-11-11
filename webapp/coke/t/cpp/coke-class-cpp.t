@@ -24,7 +24,7 @@
 )%%
 %%if-then(%Namespace_begin%,
 )%%
-%%if-then(%include(%InputPath%/coke-class-%ClassType%-cpp.t)%,
+%%if-then(%include(%include_path%/coke-class-%ClassType%-cpp.t)%,
 )%%
 %%if-then(%Namespace_end%,
 )%%

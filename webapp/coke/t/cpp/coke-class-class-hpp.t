@@ -19,30 +19,34 @@
 %#   Date: 2/2/2018
 %########################################################################
 %with(%
-%%(typedef %ClassImplements% %Class%TImplements;
-typedef %ClassExtends% %Class%TExtends;
+%%(%
+%%if(%Class%,%(%
+%%if(%ClassImplements%,%(typedef %ClassImplements% %ClassT%Implements;
+)%)%%if(%ClassExtends%,%(typedef %ClassExtends% %ClassT%Extends;
+)%)%///////////////////////////////////////////////////////////////////////
+///  Class: %ClassT%
 ///////////////////////////////////////////////////////////////////////
-///  Class: %Class%T
-///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = %Class%TImplements, class TExtends = %Class%TExtends>
+%if(%TemplateClass%,%(template
+<%if(%ClassImplements%,%(class TImplements = %ClassT%Implements, )%)%%if(%ClassExtends%,%(class TExtends = %ClassT%Extends)%)%>
 
-class _EXPORT_CLASS %Class%T: virtual public TImplements , public TExtends {
+)%)%class _EXPORT_CLASS %ClassT%%if(%ClassImplements%%ClassExtends%,%(: %if(%ClassImplements%,%(virtual public %ClassTImplements%, )%)%%if(%ClassExtends%,%(public %ClassTExtends%)%)%)%)% {
 public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
+    %if(%ClassImplements%,%(typedef %ClassTImplements% Implements;
+    )%)%%if(%ClassExtends%,%(typedef %ClassTExtends% Extends;
+    )%)%///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    %Class%T(const %Class%T& copy): Extends(copy) {
+    %ClassT%(const %ClassT%& copy%())%%if(%ClassExtends%,%(: Extends%(()%copy%())%)%)% {
     }
-    %Class%T() {
+    %ClassT%() {
     }
-    virtual ~%Class%T() {
+    virtual ~%ClassT%() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-};
-typedef %Class%T<> %Class%;
-typedef %Class%::Implements %Class%Implements;
-typedef %Class%::Extends %Class%Extends;
-)%)%
+}; // class _EXPORT_CLASS %ClassT%
+%if(%TemplateClass%,%(typedef %ClassT%<> %Class%;
+%if(%ClassImplements%,%(typedef %Class%::Implements %Class%Implements;
+)%)%%if(%ClassExtends%,%(typedef %Class%::Extends %Class%Extends;
+)%)%)%)%%
+%)%)%%
+%)%)%
