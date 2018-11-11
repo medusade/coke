@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,57 +13,60 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Object.hpp
+///   File: Main.hpp
 ///
-/// Author: $author$
-///   Date: 1/31/2018
+/// Author: $author
+///   Date: 10/21/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_LANG_OBJECT_HPP
-#define _COKE_LANG_OBJECT_HPP
+#ifndef _COKE_APP_CONSOLE_COKE_MAIN_HPP
+#define _COKE_APP_CONSOLE_COKE_MAIN_HPP
 
-#include "coke/lang/Base.hpp"
+#include "coke/system/console/Main.hpp"
 
 namespace coke {
-namespace lang {
+namespace app {
+namespace console {
+namespace coke {
 
-typedef ::coke::lang::ImplementBase ObjectImplementTImplements;
+typedef ::coke::system::console::Main MainImplements;
+typedef ::coke::system::console::MainBase MainExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: ObjectImplementT
+///  Class: Main
 ///////////////////////////////////////////////////////////////////////
-template <class TImplements = ObjectImplementTImplements>
-class _EXPORT_CLASS ObjectImplementT: virtual public TImplements {
+class _EXPORT_CLASS Main: virtual public MainImplements, public MainExtends {
 public:
-    typedef TImplements Implements;
+    typedef MainImplements Implements;
+    typedef MainExtends Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-}; // class _EXPORT_CLASS ObjectImplementT
-typedef ObjectImplementT<> ObjectImplement;
-
-typedef ObjectImplement ObjectTImplements;
-typedef Base ObjectTExtends;
-///////////////////////////////////////////////////////////////////////
-///  Class: ObjectT
-///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = ObjectTImplements, class TExtends = ObjectTExtends>
-
-class _EXPORT_CLASS ObjectT: virtual public TImplements, public TExtends {
-public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    ObjectT() {
+    Main() {
     }
-    virtual ~ObjectT() {
+    virtual ~Main() {
+    }
+private:
+    Main(const Main& copy) {
+    }
+protected:
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual int_t run(const String_array& args) {
+        int_t err = 0;
+        this->print(char_array("Hello"));
+        for (int_t a = 0; a < args.length(); ++a) {
+            this->print(char_array(" \""));
+            this->print(char_array(args[a].chars()));            
+            this->print(char_array("\""));
+        }
+        this->printLn();
+        return err;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-}; // class _EXPORT_CLASS ObjectT
-typedef ObjectT<> Object;
-typedef Object::Implements ObjectImplements;
+}; // class _EXPORT_CLASS Main
 
-} // namespace lang 
-} // namespace coke 
+} // namespace coke
+} // namespace console
+} // namespace app
+} // namespace coke
 
-#endif // _COKE_LANG_OBJECT_HPP 
+#endif // ndef _COKE_APP_CONSOLE_COKE_MAIN_HPP

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,25 +13,30 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main_main.hpp
+///   File: Version.hpp
 ///
-/// Author: $author$
-///   Date: 2/6/2018
+/// Author: $author
+///   Date: 10/19/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP
-#define _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP
+#ifndef _COKE_LIB_COKE_VERSION_HPP
+#define _COKE_LIB_COKE_VERSION_HPP
 
-#include "coke/base/Types.hpp"
+#include "coke/lib/Version.hpp"
 
 namespace coke {
-namespace system {
-namespace console {
+namespace lib {
+namespace coke {
 
-} // namespace console 
-} // namespace system 
-} // namespace coke 
+///////////////////////////////////////////////////////////////////////
+///  Class: Version
+///////////////////////////////////////////////////////////////////////
+class _EXPORT_CLASS Version {
+public:
+    static const ::coke::lib::Version& which();
+};
 
-#endif // _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP 
+} // namespace coke
+} // namespace lib
+} // namespace coke
 
-        
-
+#endif // _COKE_LIB_COKE_VERSION_HPP 

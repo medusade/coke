@@ -26,30 +26,23 @@
 namespace coke {
 namespace io {
 
-typedef lang::ObjectImplements WriterTImplements;
-typedef lang::Object WriterTExtends;
+typedef lang::ObjectImplements WriterImplementTImplements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: WriterT
+///  Class: WriterImplementT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TImplements = WriterTImplements, class TExtends = WriterTExtends>
+<class TImplements = WriterImplementTImplements>
 
-class _EXPORT_CLASS WriterT: virtual public TImplements, public TExtends {
+class _EXPORT_CLASS WriterImplementT: virtual public TImplements {
 public:
     typedef TImplements Implements;
-    typedef TExtends Extends;
+    typedef lang::String String;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    WriterT() {
-    }
-    virtual ~WriterT() {
-    }
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    virtual int_t write(const lang::String& str, int_t off, int_t len) {
+    virtual int_t write(const String& str, int_t off, int_t len) {
         return -1;
     }
-    virtual int_t write(const lang::String& str) {
+    virtual int_t write(const String& str) {
         return -1;
     }
     virtual int_t write(const char_array& cbuf, int_t off, int_t len) {
@@ -66,6 +59,29 @@ public:
     }
     virtual boolean_t close() {
         return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef WriterImplementT<> WriterImplement;
+
+typedef WriterImplement WriterTImplements;
+typedef lang::Object WriterTExtends;
+///////////////////////////////////////////////////////////////////////
+///  Class: WriterT
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = WriterTImplements, class TExtends = WriterTExtends>
+
+class _EXPORT_CLASS WriterT: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    WriterT() {
+    }
+    virtual ~WriterT() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////

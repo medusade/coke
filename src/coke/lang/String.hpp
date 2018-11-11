@@ -22,55 +22,104 @@
 #define _COKE_LANG_STRING_HPP
 
 #include "coke/lang/Object.hpp"
+#include "coke/lang/IndexOutOfBoundsException.hpp"
 
 namespace coke {
 namespace lang {
 
-typedef ObjectImplements StringTImplements;
-typedef Object StringTExtends;
+typedef ObjectImplements StringImplements;
+typedef Object StringExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: StringT
+///  Class: String
 ///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = StringTImplements, class TExtends = StringTExtends>
-
-class _EXPORT_CLASS StringT: virtual public TImplements, public TExtends {
+class _EXPORT_CLASS String: virtual public StringImplements, public StringExtends {
 public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
+    typedef StringImplements Implements;
+    typedef StringExtends Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    StringT(const StringT& copy) {
+    String(const char_t* value, int_t offset, int_t count) {
+        if ((value) && (offset >= 0) && (count >= 0)) {
+            _string.assign(value + offset, count);
+        } else {            
+            throw IndexOutOfBoundsException();
+        }
     }
-    StringT() {
+    String(const char_t* value): _string(value) {
     }
-    virtual ~StringT() {
+    String(const String& copy): _string(copy._string) {
+    }
+    String() {
+    }
+    virtual ~String() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual String& clear() {
+        _string.clear();
+        return *this;
+    }
+    virtual String& copy(const String& str) {
+        _string.assign(str._string.chars());
+        return *this;
+    }
+    virtual String& concat(const String& str) {
+        _string.append(str._string.chars());
+        return *this;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual int_t compareTo(const String& to) const {
+        return _string.compare(to._string.chars());
+    }
+    virtual int_t compareToIgnoreCase(const String& to) const {
+        return _string.compare_case(to._string.chars());
+    }
+    virtual int_t length() const {
+        return _string.length();
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual char_t charAt(int_t index) const {
+        int_t length = 0;
+        const char_t *chars = 0;
+        if ((index >= 0) && (index < (length = _string.length())) 
+            && (chars = _string.chars())) {
+            return chars[index];
+        } else {
+            throw IndexOutOfBoundsException();
+        }
+        return 0;
+    }
+    virtual const char_t* chars() const {
+        return _string.chars();
+    }
+    virtual const char_t* hasChars() const {
+        return _string.has_chars();
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    string_t _string;
 };
-typedef StringT<> String;
-typedef String::Implements StringImplements;
+typedef array<String> String_array;
 
-typedef StringImplements NullStringTImplements;
-typedef String NullStringTExtends;
+typedef StringImplements NullStringImplements;
+typedef String NullStringExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: NullStringT
+///  Class: NullString
 ///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = NullStringTImplements, class TExtends = NullStringTExtends>
-
-class _EXPORT_CLASS NullStringT: virtual public TImplements , public TExtends {
+class _EXPORT_CLASS NullString: virtual public NullStringImplements , public NullStringExtends {
 public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
+    typedef NullStringImplements Implements;
+    typedef NullStringExtends Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    NullStringT(const NullStringT& copy): Extends(copy) {
+    NullString(const NullString& copy): Extends(copy) {
     }
-    NullStringT() {
+    NullString() {
     }
-    virtual ~NullStringT() {
+    virtual ~NullString() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -80,9 +129,6 @@ public:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef NullStringT<> NullString;
-typedef NullString::Implements NullStringImplements;
-typedef NullString::Extends NullStringExtends;
 
 } // namespace lang 
 } // namespace coke 

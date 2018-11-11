@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,25 +13,28 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main_main.hpp
+///   File: Main.cpp
 ///
-/// Author: $author$
-///   Date: 2/6/2018
+/// Author: $author
+///   Date: 10/21/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP
-#define _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP
-
-#include "coke/base/Types.hpp"
+#include "coke/app/console/coke/Main.hpp"
 
 namespace coke {
-namespace system {
+namespace app {
 namespace console {
+namespace coke {
 
-} // namespace console 
-} // namespace system 
-} // namespace coke 
+///////////////////////////////////////////////////////////////////////
+///  Class: MainImplementT
+///////////////////////////////////////////////////////////////////////
 
-#endif // _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP 
+///////////////////////////////////////////////////////////////////////
+///  Class: MainT
+///////////////////////////////////////////////////////////////////////
+static Main theMain;
 
-        
-
+} // namespace coke
+} // namespace console
+} // namespace app
+} // namespace coke

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,57 +13,41 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Object.hpp
+///   File: RuntimeException.hpp
 ///
-/// Author: $author$
-///   Date: 1/31/2018
+/// Author: $author
+///   Date: 10/24/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_LANG_OBJECT_HPP
-#define _COKE_LANG_OBJECT_HPP
+#ifndef _COKE_LANG_RUNTIMEEXCEPTION_HPP
+#define _COKE_LANG_RUNTIMEEXCEPTION_HPP
 
-#include "coke/lang/Base.hpp"
+#include "coke/lang/Exception.hpp"
 
 namespace coke {
 namespace lang {
 
-typedef ::coke::lang::ImplementBase ObjectImplementTImplements;
+typedef ::coke::io::Serializable RuntimeExceptionImplements;
+typedef ::coke::lang::Exception RuntimeExceptionExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: ObjectImplementT
+///  Class: RuntimeException
 ///////////////////////////////////////////////////////////////////////
-template <class TImplements = ObjectImplementTImplements>
-class _EXPORT_CLASS ObjectImplementT: virtual public TImplements {
+class _EXPORT_CLASS RuntimeException: virtual public RuntimeExceptionImplements, public RuntimeExceptionExtends {
 public:
-    typedef TImplements Implements;
+    typedef RuntimeExceptionImplements Implements;
+    typedef RuntimeExceptionExtends Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-}; // class _EXPORT_CLASS ObjectImplementT
-typedef ObjectImplementT<> ObjectImplement;
-
-typedef ObjectImplement ObjectTImplements;
-typedef Base ObjectTExtends;
-///////////////////////////////////////////////////////////////////////
-///  Class: ObjectT
-///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = ObjectTImplements, class TExtends = ObjectTExtends>
-
-class _EXPORT_CLASS ObjectT: virtual public TImplements, public TExtends {
-public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    ObjectT() {
+    RuntimeException(const RuntimeException& copy): Extends(copy) {
     }
-    virtual ~ObjectT() {
+    RuntimeException() {
+    }
+    virtual ~RuntimeException() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-}; // class _EXPORT_CLASS ObjectT
-typedef ObjectT<> Object;
-typedef Object::Implements ObjectImplements;
+}; // class _EXPORT_CLASS RuntimeException
 
-} // namespace lang 
-} // namespace coke 
+} // namespace lang
+} // namespace coke
 
-#endif // _COKE_LANG_OBJECT_HPP 
+#endif // ndef _COKE_LANG_RUNTIMEEXCEPTION_HPP

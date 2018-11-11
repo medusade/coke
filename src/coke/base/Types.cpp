@@ -13,25 +13,13 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main_main.hpp
+///   File: Types.cpp
 ///
 /// Author: $author$
-///   Date: 2/6/2018
+///   Date: 1/31/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP
-#define _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP
-
 #include "coke/base/Types.hpp"
 
 namespace coke {
-namespace system {
-namespace console {
 
-} // namespace console 
-} // namespace system 
 } // namespace coke 
-
-#endif // _COKE_SYSTEM_CONSOLE_MAIN_MAIN_HPP 
-
-        
-

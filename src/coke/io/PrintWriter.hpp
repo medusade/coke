@@ -26,30 +26,23 @@
 namespace coke {
 namespace io {
 
-typedef WriterImplements PrintWriterTImplements;
-typedef Writer PrintWriterTExtends;
+typedef WriterImplements PrintWriterImplementTImplements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: PrintWriterT
+///  Class: PrintWriterImplementT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TImplements = PrintWriterTImplements, class TExtends = PrintWriterTExtends>
+<class TImplements = PrintWriterImplementTImplements>
 
-class _EXPORT_CLASS PrintWriterT: virtual public TImplements, public TExtends {
+class _EXPORT_CLASS PrintWriterImplementT: virtual public TImplements {
 public:
     typedef TImplements Implements;
-    typedef TExtends Extends;
+    typedef lang::String String;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    PrintWriterT() {
-    }
-    virtual ~PrintWriterT() {
-    }
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    virtual int_t printLn(const lang::String& str, int_t off, int_t len) {
+    virtual int_t printLn(const String& str, int_t off, int_t len) {
         return -1;
     }
-    virtual int_t printLn(const lang::String& str) {
+    virtual int_t printLn(const String& str) {
         return -1;
     }
     virtual int_t printLn(const char_array& buf, int_t off, int_t len) {
@@ -66,10 +59,10 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual int_t print(const lang::String& str, int_t off, int_t len) {
+    virtual int_t print(const String& str, int_t off, int_t len) {
         return -1;
     }
-    virtual int_t print(const lang::String& str) {
+    virtual int_t print(const String& str) {
         return -1;
     }
     virtual int_t print(const char_array& buf, int_t off, int_t len) {
@@ -80,6 +73,29 @@ public:
     }
     virtual int_t print(const char_t& c) {
         return -1;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef PrintWriterImplementT<> PrintWriterImplement;
+
+typedef PrintWriterImplement PrintWriterTImplements;
+typedef Writer PrintWriterTExtends;
+///////////////////////////////////////////////////////////////////////
+///  Class: PrintWriterT
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = PrintWriterTImplements, class TExtends = PrintWriterTExtends>
+
+class _EXPORT_CLASS PrintWriterT: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    PrintWriterT() {
+    }
+    virtual ~PrintWriterT() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////

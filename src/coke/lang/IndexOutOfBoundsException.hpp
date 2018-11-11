@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2018 $organization
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,57 +13,41 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Object.hpp
+///   File: IndexOutOfBoundsException.hpp
 ///
-/// Author: $author$
-///   Date: 1/31/2018
+/// Author: $author
+///   Date: 10/24/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_LANG_OBJECT_HPP
-#define _COKE_LANG_OBJECT_HPP
+#ifndef _COKE_LANG_INDEXOUTOFBOUNDSEXCEPTION_HPP
+#define _COKE_LANG_INDEXOUTOFBOUNDSEXCEPTION_HPP
 
-#include "coke/lang/Base.hpp"
+#include "coke/lang/RuntimeException.hpp"
 
 namespace coke {
 namespace lang {
 
-typedef ::coke::lang::ImplementBase ObjectImplementTImplements;
+typedef ::coke::io::Serializable IndexOutOfBoundsExceptionImplements;
+typedef ::coke::lang::RuntimeException IndexOutOfBoundsExceptionExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: ObjectImplementT
+///  Class: IndexOutOfBoundsException
 ///////////////////////////////////////////////////////////////////////
-template <class TImplements = ObjectImplementTImplements>
-class _EXPORT_CLASS ObjectImplementT: virtual public TImplements {
+class _EXPORT_CLASS IndexOutOfBoundsException: virtual public IndexOutOfBoundsExceptionImplements, public IndexOutOfBoundsExceptionExtends {
 public:
-    typedef TImplements Implements;
+    typedef IndexOutOfBoundsExceptionImplements Implements;
+    typedef IndexOutOfBoundsExceptionExtends Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-}; // class _EXPORT_CLASS ObjectImplementT
-typedef ObjectImplementT<> ObjectImplement;
-
-typedef ObjectImplement ObjectTImplements;
-typedef Base ObjectTExtends;
-///////////////////////////////////////////////////////////////////////
-///  Class: ObjectT
-///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = ObjectTImplements, class TExtends = ObjectTExtends>
-
-class _EXPORT_CLASS ObjectT: virtual public TImplements, public TExtends {
-public:
-    typedef TImplements Implements;
-    typedef TExtends Extends;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    ObjectT() {
+    IndexOutOfBoundsException(const IndexOutOfBoundsException& copy): Extends(copy) {
     }
-    virtual ~ObjectT() {
+    IndexOutOfBoundsException() {
+    }
+    virtual ~IndexOutOfBoundsException() {
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-}; // class _EXPORT_CLASS ObjectT
-typedef ObjectT<> Object;
-typedef Object::Implements ObjectImplements;
+}; // class _EXPORT_CLASS IndexOutOfBoundsException
 
-} // namespace lang 
-} // namespace coke 
+} // namespace lang
+} // namespace coke
 
-#endif // _COKE_LANG_OBJECT_HPP 
+#endif // ndef _COKE_LANG_INDEXOUTOFBOUNDSEXCEPTION_HPP

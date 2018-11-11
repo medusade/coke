@@ -13,71 +13,69 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Base.hpp
+///   File: Version.cpp
 ///
 /// Author: $author
-///   Date: 2/2/2018
+///   Date: 10/19/2018
 ///////////////////////////////////////////////////////////////////////
-#ifndef _COKE_LANG_BASE_HPP
-#define _COKE_LANG_BASE_HPP
+#include "coke/lib/coke/Version.hpp"
 
-#include "coke/base/Types.hpp"
+#define COKE_LIB_COKE_VERSION_MAJOR 0
+#define COKE_LIB_COKE_VERSION_MINOR 0
+#define COKE_LIB_COKE_VERSION_RELEASE 0
+#define COKE_LIB_COKE_VERSION_BUILD 0
 
 namespace coke {
-namespace lang {
+namespace lib {
+namespace coke {
 
-typedef ::xos::base::implement_base ImplementBaseTImplements;
-///////////////////////////////////////////////////////////////////////
-///  Class: ImplementBaseT
-///////////////////////////////////////////////////////////////////////
-template
-<class TImplements = ImplementBaseTImplements>
+namespace which {
 
-class _EXPORT_CLASS ImplementBaseT: virtual public TImplements {
-public:
-    typedef TImplements Implements;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    virtual boolean_t isNull() const {
-        return false;
-    }
-    virtual operator boolean_t() const {
-        return !isNull();
-    }
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-};
-typedef ImplementBaseT<> ImplementBase;
-typedef ImplementBase::Implements ImplementBaseImplements;
-
-typedef ImplementBase BaseTImplements;
-typedef ::xos::base::base BaseTExtends;
+typedef ::coke::lib::Version VersionTImplements;
+typedef ::coke::lib::NullVersion VersionTExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: BaseT
+///  Class: VersionT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TImplements = BaseTImplements, class TExtends = BaseTExtends>
+<class TImplements = VersionTImplements, class TExtends = VersionTExtends>
 
-class _EXPORT_CLASS BaseT: virtual public TImplements , public TExtends {
+class _EXPORT_CLASS VersionT: virtual public TImplements , public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    BaseT(const BaseT& copy) {
+    VersionT(const VersionT& copy): Extends(copy) {
     }
-    BaseT() {
+    VersionT()
+    : Extends
+      (COKE_LIB_COKE_VERSION_MAJOR, COKE_LIB_COKE_VERSION_MINOR, 
+       COKE_LIB_COKE_VERSION_RELEASE, COKE_LIB_COKE_VERSION_BUILD) {
     }
-    virtual ~BaseT() {
+    virtual ~VersionT() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual boolean_t isNull() const {
+        return true;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef BaseT<> Base;
-typedef Base::Implements BaseImplements;
-typedef Base::Extends BaseExtends;
+typedef VersionT<> Version;
+typedef Version::Implements VersionImplements;
+typedef Version::Extends VersionExtends;
 
-} // namespace lang
+} // namespace which
+
+///////////////////////////////////////////////////////////////////////
+///  Class: Version
+///////////////////////////////////////////////////////////////////////
+const lib::Version& Version::which() {
+    static const which::Version version;
+    return version;
+}
+
 } // namespace coke
-
-#endif // _COKE_LANG_BASE_HPP 
+} // namespace lib
+} // namespace coke
