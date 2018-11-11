@@ -13,71 +13,30 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: coke.pri
+#   File: Makefile
 #
 # Author: $author$
 #   Date: 10/19/2018
 #
-# build QtCreator .pri file for coke
+# Os Gcc Makefile for framework subdurs
 ########################################################################
 
-########################################################################
-# rostra
+PKG = ../../../..
+
+MAK = projects/Makefile/Gcc
+PRJ = projects/os/Makefile/Gcc
+SRC = src
+
+include $(PKG)/$(MAK)/Makedefines
+
 #
-# pkg-config --cflags --libs rostra
+# Source subdirs
 #
-
-# build rostra INCLUDEPATH
+#SRC_DIRS = \
+#$(PKG)/$(PRJ)/somedir \
 #
-build_rostra_INCLUDEPATH += \
+SRC_DIRS = \
+$(PKG)/$(PRJ)/lib/libframework \
+$(PKG)/$(PRJ)/app/framework \
 
-# build rostra DEFINES
-#
-build_rostra_DEFINES += \
-
-# build rostra LIBS
-#
-build_rostra_LIBS += \
-
-########################################################################
-# nadir
-#
-# pkg-config --cflags --libs nadir
-#
-
-# build nadir INCLUDEPATH
-#
-build_nadir_INCLUDEPATH += \
-
-# build nadir DEFINES
-#
-build_nadir_DEFINES += \
-
-# build nadir LIBS
-#
-build_nadir_LIBS += \
-
-########################################################################
-# coke
-
-# build coke INCLUDEPATH
-#
-build_coke_INCLUDEPATH += \
-$${build_nadir_INCLUDEPATH} \
-$${build_rostra_INCLUDEPATH} \
-
-
-# build coke DEFINES
-#
-build_coke_DEFINES += \
-$${build_rostra_DEFINES} \
-$${build_nadir_DEFINES} \
-
-
-# build coke LIBS
-#
-build_coke_LIBS += \
-$${build_nadir_LIBS} \
-$${build_rostra_LIBS} \
-
-
+include $(PKG)/$(MAK)/Makedirs

@@ -13,55 +13,47 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: libcoke.pro
+#   File: Makedefines
 #
 # Author: $author$
 #   Date: 10/19/2018
 #
-# QtCreator .pro file for coke library libcoke
-########################################################################
-include(../../../../../build/QtCreator/coke.pri)
-include(../../../../QtCreator/coke.pri)
-include(../../coke.pri)
-include(../../../../QtCreator/lib/libcoke/libcoke.pri)
-
-TARGET = $${libcoke_TARGET}
-TEMPLATE = $${libcoke_TEMPLATE}
-CONFIG += $${libcoke_CONFIG}
-
-########################################################################
-# INCLUDEPATH
-#
-INCLUDEPATH += \
-$${libcoke_INCLUDEPATH} \
-
-# DEFINES
-# 
-DEFINES += \
-$${libcoke_DEFINES} \
-
-########################################################################
-# OBJECTIVE_HEADERS
-#
-OBJECTIVE_HEADERS += \
-$${libcoke_OBJECTIVE_HEADERS} \
-
-# OBJECTIVE_SOURCES
-#
-OBJECTIVE_SOURCES += \
-$${libcoke_OBJECTIVE_SOURCES} \
-
-########################################################################
-# HEADERS
-#
-HEADERS += \
-$${libcoke_HEADERS} \
-
-# SOURCES
-#
-SOURCES += \
-$${libcoke_SOURCES} \
-
+# build Gcc Makedefines for framework
 ########################################################################
 
+#
+# build HOME
+#
+ifndef BUILD_HOME
+ifdef PKG
+BUILD_HOME = $(PKG)/../..
+else
+BUILD_HOME = $(HOME)
+endif
+endif
+
+#
+# build UNAME
+#
+ifndef UNAME
+UNAME = $(shell uname)
+endif
+
+#
+# build OS
+#
+ifndef OS
+ifneq ($(UNAME),Darwin)
+OS = linux
+else
+OS = macosx
+endif
+endif
+
+#
+# install directory
+#
+ifndef INS
+INS = $(BUILD_HOME)/build/framework
+endif
 

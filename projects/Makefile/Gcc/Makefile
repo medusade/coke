@@ -13,55 +13,56 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: libcoke.pro
+#   File: Makefile
 #
 # Author: $author$
 #   Date: 10/19/2018
 #
-# QtCreator .pro file for coke library libcoke
-########################################################################
-include(../../../../../build/QtCreator/coke.pri)
-include(../../../../QtCreator/coke.pri)
-include(../../coke.pri)
-include(../../../../QtCreator/lib/libcoke/libcoke.pri)
-
-TARGET = $${libcoke_TARGET}
-TEMPLATE = $${libcoke_TEMPLATE}
-CONFIG += $${libcoke_CONFIG}
-
-########################################################################
-# INCLUDEPATH
-#
-INCLUDEPATH += \
-$${libcoke_INCLUDEPATH} \
-
-# DEFINES
-# 
-DEFINES += \
-$${libcoke_DEFINES} \
-
-########################################################################
-# OBJECTIVE_HEADERS
-#
-OBJECTIVE_HEADERS += \
-$${libcoke_OBJECTIVE_HEADERS} \
-
-# OBJECTIVE_SOURCES
-#
-OBJECTIVE_SOURCES += \
-$${libcoke_OBJECTIVE_SOURCES} \
-
-########################################################################
-# HEADERS
-#
-HEADERS += \
-$${libcoke_HEADERS} \
-
-# SOURCES
-#
-SOURCES += \
-$${libcoke_SOURCES} \
-
+# generic Gcc Makefile for framework
 ########################################################################
 
+OTHER_VERSION_PKG = ${PKG}
+OTHER_DEPENDS_PKG = ${PKG}/..
+OTHER_THIRDPARTY_NAME = thirdparty
+OTHER_THIRDPARTY_VERSION_PKG = ${OTHER_VERSION_PKG}/${OTHER_THIRDPARTY_NAME}
+
+FRAMEWORK_PKG = ${PKG}
+FRAMEWORK_SRC = ${FRAMEWORK_PKG}/src
+FRAMEWORK_BLD = ${FRAMEWORK_PKG}/${BLD}/${BUILD_TYPE}
+FRAMEWORK_LIB = ${FRAMEWORK_BLD}/lib
+FRAMEWORK_BIN = ${FRAMEWORK_BLD}/bin
+
+
+########################################################################
+# framework
+
+# framework USRDEFINES
+#
+framework_USRDEFINES += \
+${build_framework_USRDEFINES} \
+
+# framework USRINCLUDES
+#
+framework_USRINCLUDES += \
+-I${FRAMEWORK_SRC} \
+${build_framework_USRINCLUDES} \
+
+# framework USRCXXFLAGS
+#
+framework_USRCXXFLAGS += \
+${build_framework_USRCXXFLAGS} \
+
+# framework USRLIBDIRS
+#
+framework_USRLIBDIRS += \
+-L${FRAMEWORK_LIB} \
+${build_framework_USRLIBDIRS} \
+
+# framework LIBS
+#
+framework_LIBS += \
+-lframework \
+${build_framework_LIBS} \
+
+########################################################################
 

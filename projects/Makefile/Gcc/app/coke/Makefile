@@ -13,71 +13,92 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: coke.pri
+#   File: Makefile
 #
 # Author: $author$
 #   Date: 10/19/2018
 #
-# build QtCreator .pri file for coke
+# generic Gcc Makefile for framework Executable framework
 ########################################################################
 
-########################################################################
-# rostra
-#
-# pkg-config --cflags --libs rostra
-#
 
-# build rostra INCLUDEPATH
 #
-build_rostra_INCLUDEPATH += \
-
-# build rostra DEFINES
+# target
 #
-build_rostra_DEFINES += \
-
-# build rostra LIBS
-#
-build_rostra_LIBS += \
+framework_exe_EXETARGET = framework
 
 ########################################################################
-# nadir
-#
-# pkg-config --cflags --libs nadir
-#
 
-# build nadir INCLUDEPATH
 #
-build_nadir_INCLUDEPATH += \
+# user c++ flags
+#
+framework_exe_USRCXXFLAGS += \
+${framework_USRCXXFLAGS} \
 
-# build nadir DEFINES
 #
-build_nadir_DEFINES += \
+# user defines
+#
+framework_exe_USRDEFINES += \
+${framework_USRDEFINES} \
 
-# build nadir LIBS
 #
-build_nadir_LIBS += \
+# user includes
+#
+framework_exe_USRINCLUDES += \
+${framework_USRINCLUDES} \
+
+#
+# user libdirs
+#
+framework_exe_USRLIBDIRS += \
+${framework_USRLIBDIRS} \
 
 ########################################################################
-# coke
 
-# build coke INCLUDEPATH
 #
-build_coke_INCLUDEPATH += \
-$${build_nadir_INCLUDEPATH} \
-$${build_rostra_INCLUDEPATH} \
-
-
-# build coke DEFINES
+# Executable .c sources
 #
-build_coke_DEFINES += \
-$${build_rostra_DEFINES} \
-$${build_nadir_DEFINES} \
+#framework_exe_EXE_C_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.c \
 
-
-# build coke LIBS
 #
-build_coke_LIBS += \
-$${build_nadir_LIBS} \
-$${build_rostra_LIBS} \
+# Executable .cc sources
+#
+#framework_exe_EXE_CC_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.cc \
+
+#
+# Executable .cxx sources
+#
+#framework_exe_EXE_CXX_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.cxx \
+
+#
+# Executable .cpp sources
+#
+#framework_exe_EXE_CPP_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.cpp \
+
+#
+# Executable .m sources
+#
+#framework_exe_EXE_M_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.m \
+
+#
+# Executable .mm sources
+#
+#framework_exe_EXE_MM_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.mm \
+
+
+########################################################################
+
+#
+# Executable libraries
+#
+framework_exe_LIBS += \
+${framework_LIBS}
+
 
 

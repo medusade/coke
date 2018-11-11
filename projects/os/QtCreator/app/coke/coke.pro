@@ -16,7 +16,7 @@
 #   File: coke.pro
 #
 # Author: $author$
-#   Date: 2/5/2018
+#   Date: 10/19/2018
 #
 # QtCreator .pro file for coke executable coke
 ########################################################################
@@ -28,21 +28,49 @@ include(../../../../QtCreator/app/coke/coke.pri)
 TARGET = $${coke_exe_TARGET}
 
 ########################################################################
+# INCLUDEPATH
+#
 INCLUDEPATH += \
 $${coke_exe_INCLUDEPATH} \
 
+# DEFINES
+# 
 DEFINES += \
 $${coke_exe_DEFINES} \
 
 ########################################################################
+# OBJECTIVE_HEADERS
+#
+OBJECTIVE_HEADERS += \
+$${coke_exe_OBJECTIVE_HEADERS} \
+
+# OBJECTIVE_SOURCES
+#
+SOURCES += \
+$${coke_exe_OBJECTIVE_SOURCES} \
+
+########################################################################
+# HEADERS
+#
 HEADERS += \
 $${coke_exe_HEADERS} \
 
+# SOURCES
+#
 SOURCES += \
 $${coke_exe_SOURCES} \
+$${OBJECTIVE_SOURCES} \
 
 ########################################################################
+# FRAMEWORKS
+#
+FRAMEWORKS += \
+$${coke_exe_FRAMEWORKS} \
+
+# LIBS
+#
 LIBS += \
 $${coke_exe_LIBS} \
+$${FRAMEWORKS} \
 
 

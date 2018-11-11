@@ -13,71 +13,87 @@
 # or otherwise) arising in any way out of the use of this software,
 # even if advised of the possibility of such damage.
 #
-#   File: coke.pri
+#   File: Makefile
 #
 # Author: $author$
 #   Date: 10/19/2018
 #
-# build QtCreator .pri file for coke
+# generic Gcc Makefile for framework Library libframework
 ########################################################################
 
-########################################################################
-# rostra
-#
-# pkg-config --cflags --libs rostra
-#
 
-# build rostra INCLUDEPATH
 #
-build_rostra_INCLUDEPATH += \
-
-# build rostra DEFINES
+# target
 #
-build_rostra_DEFINES += \
-
-# build rostra LIBS
-#
-build_rostra_LIBS += \
+libframework_LIBTARGET = libframework.${LIBEXT}
 
 ########################################################################
-# nadir
-#
-# pkg-config --cflags --libs nadir
-#
 
-# build nadir INCLUDEPATH
 #
-build_nadir_INCLUDEPATH += \
+# user c++ flags
+#
+libframework_USRCXXFLAGS += \
+${framework_USRCXXFLAGS} \
 
-# build nadir DEFINES
 #
-build_nadir_DEFINES += \
+# user defines
+#
+libframework_USRDEFINES += \
+${framework_USRDEFINES} \
 
-# build nadir LIBS
 #
-build_nadir_LIBS += \
+# user includes
+#
+libframework_USRINCLUDES += \
+${framework_USRINCLUDES} \
+
+#
+# user libdirs
+#
+libframework_USRLIBDIRS += \
+${framework_USRLIBDIRS} \
 
 ########################################################################
-# coke
 
-# build coke INCLUDEPATH
 #
-build_coke_INCLUDEPATH += \
-$${build_nadir_INCLUDEPATH} \
-$${build_rostra_INCLUDEPATH} \
-
-
-# build coke DEFINES
+# Library .c sources
 #
-build_coke_DEFINES += \
-$${build_rostra_DEFINES} \
-$${build_nadir_DEFINES} \
+#libframework_LIB_C_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.c \
 
-
-# build coke LIBS
 #
-build_coke_LIBS += \
-$${build_nadir_LIBS} \
-$${build_rostra_LIBS} \
+# Library .cc sources
+#
+#libframework_LIB_CC_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.cc \
+
+#
+# Library .cxx sources
+#
+#libframework_LIB_CXX_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.cxx \
+
+#
+# Library .cpp sources
+#
+#libframework_LIB_CPP_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.cpp \
+
+#
+# Library .m sources
+#
+#libframework_LIB_M_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.m \
+
+#
+# Library .mm sources
+#
+#libframework_LIB_MM_SOURCES += \
+#${FRAMEWORK_SRC}/framework/base/Base.mm \
+
+
+########################################################################
+
+
 
 

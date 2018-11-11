@@ -16,24 +16,44 @@
 #   File: libcoke.pri
 #
 # Author: $author$
-#   Date: 2/5/2018
+#   Date: 10/19/2018
 #
 # QtCreator .pri file for coke library libcoke
 ########################################################################
 
 ########################################################################
 # libcoke
+
+# libcoke TARGET
+#
 libcoke_TARGET = coke
 libcoke_TEMPLATE = lib
 libcoke_CONFIG += staticlib
 
+# libcoke INCLUDEPATH
+#
 libcoke_INCLUDEPATH += \
 $${coke_INCLUDEPATH} \
 
+# libcoke DEFINES
+#
 libcoke_DEFINES += \
 $${coke_DEFINES} \
 
 ########################################################################
+# libcoke OBJECTIVE_HEADERS
+#
+#libcoke_OBJECTIVE_HEADERS += \
+#$${COKE_SRC}/coke/base/Base.hh \
+
+# libcoke OBJECTIVE_SOURCES
+#
+#libcoke_OBJECTIVE_SOURCES += \
+#$${COKE_SRC}/coke/base/Base.mm \
+
+########################################################################
+# libcoke HEADERS
+#
 libcoke_HEADERS += \
 $${COKE_SRC}/coke/io/PrintWriter.hpp \
 $${COKE_SRC}/coke/io/OutputStream.hpp \
@@ -54,8 +74,12 @@ $${COKE_SRC}/coke/lang/String.hpp \
 $${COKE_SRC}/coke/lang/Class.hpp \
 $${COKE_SRC}/coke/lang/Object.hpp \
 $${COKE_SRC}/coke/lang/Base.hpp \
-$${COKE_SRC}/coke/Types.hpp \
+$${COKE_SRC}/coke/lib/Version.hpp \
+$${COKE_SRC}/coke/lib/coke/Version.hpp \
+$${COKE_SRC}/coke/base/Types.hpp \
 
+# libcoke SOURCES
+#
 libcoke_SOURCES += \
 $${COKE_SRC}/coke/io/PrintWriter.cpp \
 $${COKE_SRC}/coke/io/OutputStream.cpp \
@@ -76,6 +100,7 @@ $${COKE_SRC}/coke/lang/String.cpp \
 $${COKE_SRC}/coke/lang/Class.cpp \
 $${COKE_SRC}/coke/lang/Object.cpp \
 $${COKE_SRC}/coke/lang/Base.cpp \
-$${COKE_SRC}/coke/Types.cpp \
+$${COKE_SRC}/coke/lib/coke/Version.cpp \
+$${COKE_SRC}/coke/base/Types.cpp \
 
 ########################################################################
